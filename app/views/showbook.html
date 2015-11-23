@@ -1,0 +1,44 @@
+<html>
+<head>
+        <!-- <link rel="stylesheet" type="text/css" href="static/css/walls.css"> -->
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <a href="/show">Home</a><a href="/logout">Logout</a>
+        <h1>{{book_info['title']}}</h1>
+        <h3>{{book_info['name']}}</h3>
+        <h4>Reviews:</h4>
+        {% for rev in reviews %}
+            <p>Rating:{{rev['rating']}}</p>
+            <p><a href="/users/{{rev['id']}}">{{rev['name']}}</a> says: {{rev['reviews']}}</p>
+            <p>{{rev['created_at']}}</p>
+            {% if session['id'] == rev['id'] %}
+                <form action="/delete/{{rev['review_id']}}" method="post">
+                    <input type = "submit" value="Delete this Review">
+                </form>
+            {% endif %}
+            <hr>
+        {% endfor %}
+
+        <h4>Add a Review:</h4>
+        <form action="/add_review/{{id}}" method="post">
+            <textarea name="add_review" class="form-control" rowe='3'></textarea>
+              <select name="rating">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <label for="stars">stars</label>
+            <input type="submit" name="add_review" class="btn btn-default" value="Submit Review">
+        </form>
+    </body>
+</html>
