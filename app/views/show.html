@@ -1,35 +1,82 @@
 <html>
 <head>
-        <link rel="stylesheet" type="text/css" href="static/css/Books-show.css">
+    <link rel="stylesheet" type="text/css" href="static/css/show.css">
     <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container--fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">JoReviews</a>
+            </div>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    </head>
-    <body>
-        <h1> Welcome, {{session['name']}}!</h1>
-        <a href="/addbook">Add Book and Review</a>
-        <a href="/logout">Logout</a>
-        <h3> Recent Book Reviews: </h3>
-        {% for rev in recent_reviews %}
-            <p><a href="/book/{{rev['id']}}">{{rev['title']}}</a></p>
-            <p>Rating:{{rev['rating']}}</p>
-            <p><a href="/users/{{rev['user_id']}}">{{rev['name']}} </a>says: {{rev['reviews']}}</p>
-            <p>{{rev['created_at']}}</p>
-        {% endfor %}
-
-        <label for="other_reviews">Other Books with Reviews:</label>
-       
-
-        <div id="box">
-            {% for reviews in other_reviews %}
-                <p><a href="/book/{{reviews['id']}}">{{reviews['title']}}</a></p>
-            {% endfor %}
-        
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    {% if session['id'] %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome {{ session['name'] }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/logout">Sign out</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div><!-- /.navbar-collapse -->
         </div>
+    </nav>
+
+    <div class="text-center">
+        <button type="button" class="add btn btn-info"><a href="/addbook">Add Book and Review</a></button>
+    </div>
+
+    <section id="reviews">
+        <div id="recent_reviews">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h3 id="recent_heading" class="section-heading"> Recent Book Reviews: </h3>
+                    <hr class="divider">
+                </div>
+            </div>   
+            <div id="review_blocks">
+            {% for rev in recent_reviews %}
+                <div class="reviews">
+                    <p><a href="/book/{{rev['id']}}">{{rev['title']}}</a></p>
+                    <p>Rating:{{rev['rating']}}</p>
+                    <p><a href="/users/{{rev['user_id']}}">{{rev['name']}} </a>says: {{rev['reviews']}}</p>
+                    <p>{{rev['created_at']}}</p>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section id="other_reviews">
+        <div id="box_wrapper">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h3 id="other_header" class="section-heading">Other Books with Reviews:</h3>
+                </div>
+            </div>
+            <div id="box">
+                {% for reviews in other_reviews %}
+                    <p><a href="/book/{{reviews['id']}}">{{reviews['title']}}</a></p>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
     </body>
 </html>

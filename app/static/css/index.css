@@ -1,0 +1,16 @@
+input[type=text], input[type=password] {
+	width:60%;
+}
+
+input[type=submit] {
+	width:34%;
+}
+
+.form-horizontal {
+	float: none;
+	margin: 0 auto;
+}
+
+#register, #login, h1 {
+	margin-left: 10px;
+}
