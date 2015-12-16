@@ -16,17 +16,19 @@ from system.core.router import routes
     named id the automatically generated url would be '/products/add/<id>'
     The automatically generated routes respond to all of the http verbs (GET, POST, PUT, PATCH, DELETE)
 """
-routes['default_controller'] = 'Books'
-routes['POST']['/create'] = 'Books#create'
-routes['/show'] = 'Books#show'
-routes['/logout'] = 'Books#logout'
-routes['POST']['/login'] = 'Books#login'
-routes['/addbook'] = 'Books#add_book'
-routes['POST']['/process'] = 'Books#process'
-routes['/book/<id>'] = 'Books#show_book'
-routes['POST']['/add_review/<id>'] = 'Books#add_review'
-routes['/users/<id>'] = 'Books#users'
-routes['POST']['/delete/<id>'] = 'Books#destroy'
+routes['default_controller'] = 'Users'
+# USERS ROUTES
+routes['POST']['/user'] = 'Users#create'
+routes['POST']['/user/login'] = 'Users#login'
+routes['GET']['/user'] = 'Users#index'
+routes['GET']['/users/<id>'] = 'Users#show'
+routes['GET']['/user/logout'] = 'Users#logout'
+# REVIEWS ROUTES
+routes['GET']['/review/new'] = 'Reviews#new'
+routes['POST']['/review/create'] = 'Reviews#create'
+routes['GET']['/review/<id>'] = 'Reviews#show'
+routes['POST']['/review/<id>/update'] = 'Reviews#update'
+routes['POST']['/review/<id>/delete'] = 'Reviews#destroy'
 """
     You can add routes and specify their handlers as follows:
 

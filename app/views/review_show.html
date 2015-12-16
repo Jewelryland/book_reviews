@@ -11,7 +11,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <a href="/show">Home</a><a href="/logout">Logout</a>
+        <a href="/user">Home</a><a href="/user/logout">Logout</a>
         <h1>{{book_info['title']}}</h1>
         <h3>{{book_info['name']}}</h3>
         <h4>Reviews:</h4>
@@ -20,7 +20,7 @@
             <p><a href="/users/{{rev['id']}}">{{rev['name']}}</a> says: {{rev['reviews']}}</p>
             <p>{{rev['created_at']}}</p>
             {% if session['id'] == rev['id'] %}
-                <form action="/delete/{{rev['review_id']}}" method="post">
+                <form action="/review/{{rev['review_id']}}/delete" method="post">
                     <input type = "submit" value="Delete this Review">
                 </form>
             {% endif %}

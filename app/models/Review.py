@@ -1,24 +1,10 @@
 from system.core.model import Model
 import re
 
-class Book(Model):
+class Review(Model):
     def __init__(self):
-        super(Book, self).__init__()
-    def create(self, info):
-        pw_hash = self.bcrypt.generate_password_hash(info['password'])
-        create_user_query = "INSERT INTO users (name, alias, email, password,created_at, updated_at) VALUES ('{}', '{}', '{}', '{}', NOW(), NOW())".format(info['name'], info['alias'], info['email'],pw_hash)
-        self.db.query_db(create_user_query)
-    def login(self, info):
-        login_query = "SELECT * FROM users WHERE email = '{}'".format(info['login_email'])
-        login_status = self.db.query_db(login_query)
-        if login_status[0]:
-            if self.bcrypt.check_password_hash(login_status[0]['password'], info['login_password']):
-                return {'status':True, 'login_status':login_status[0]}
-            else:
-                return {'status':False}
-    def process(self, info):
-        add_book_query = "INSERT INTO books ("
-        
+        super(Review, self).__init__()
+
     def create_book(self, user_id,book_info):
         author_query="SELECT * FROM authors WHERE name='{}'".format(book_info['author'])
         author = self.db.query_db(author_query)
@@ -71,10 +57,6 @@ class Book(Model):
         other_reviews_query = "SELECT books.title, books.id FROM reviews JOIN books ON reviews.books_id = books.id GROUP BY books.title ORDER BY reviews.created_at ASC"
         other_reviews = self.db.query_db(other_reviews_query)
         return other_reviews
-    def user_info(self, user_id):
-        user_id_query = "SELECT * FROM users WHERE id = {}".format(user_id)
-        user = self.db.query_db(user_id_query)
-        return user[0]
     def total_reviews(self, user_id):
         total_reviews_query = "SELECT COUNT(*) AS total_reviews FROM reviews WHERE users_id = {}".format(user_id)
         total_reviews = self.db.query_db(total_reviews_query)

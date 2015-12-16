@@ -11,7 +11,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <a href="/show">Home</a><a href="/addbook">Add book and review</a><a href="/logout">Logout</a>
+        <a href="/user">Home</a><a href="/review/new">Add book and review</a><a href="/user/logout">Logout</a>
         <h3>User Alias:{{user_info['alias']}}</h3>
         <h4>Name: {{user_info['name']}}</h4>
         <h4>Email:{{user_info['email']}}</h4>
@@ -19,7 +19,7 @@
 
         <p> Posted Reviews on the following books:</p>
         {% for reviews in review_titles %}
-            <p> <a href="/book/{{reviews['id']}}">{{reviews['title']}}</a> </p>
+            <p> <a href="/review/{{reviews['id']}}">{{reviews['title']}}</a> </p>
         {% endfor %}
     </body>
 </html>
