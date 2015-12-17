@@ -1,35 +1,62 @@
 <html>
 <head>
-            <!-- <link rel="stylesheet" type="text/css" href="static/css/walls.css"> -->
+    <link rel="stylesheet" type="text/css" href="../static/css/review_new.css">
     <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container--fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/user">JoReviews</a>
+            </div>
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    {% if session['id'] %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome {{ session['name'] }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/user/logout">Sign out</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div>
+    </nav>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    </head>
-    <body>
-        <a href="/user">Home</a><a href="/user/logout">Logout</a>
-        <h2> Add a New Book Title and a Review: </h2>
+    <div id="form">
+        <h2 class="header"> Add a Review </h2>
         <form action = "/review/create" method="post">
-            <label for ="title">Book Title:</label>
-            <input type="text" name="title">
-            <label for="author">Author:</label>
-            <input type="text" name="author">
-    
-            <label for="review">Review:</label>
-            <textarea name="review" class="form-control" rowe='3'></textarea>
+            <!-- <label for ="title">Book Title:</label> -->
+            <input type="text" name="title" placeholder="Book Title">
+            <!-- <label for="author">Author:</label> -->
+            <input type="text" name="author" placeholder="Author">
+            <!-- <label for="review">Review:</label> -->
+            <textarea name="review" class="form-control" rowe='4' placeholder="Write your review here..."></textarea>
             <label for="rating">Rating:</label>
-            <select name="rating">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select> Stars
-            <input type="submit" value="Add Book and Review">
+                <select name="rating">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            <input type="submit" class="btn btn-warning" value="Add Book and Review">
         </form>
-    </body>
+    </div>
+</body>
 </html>

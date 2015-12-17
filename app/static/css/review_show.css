@@ -1,0 +1,25 @@
+body{
+	background: url(../img/bg.jpg) no-repeat center center !important;
+}
+#main {
+	background:#6495ED;
+	width:80%;
+	height:;
+	border: 1px solid black;
+	margin:auto;
+	margin-bottom:20px;
+	padding:20px 20px;
+}
+.header {
+	color:#f8f8f8;
+}
+h1, h3 {
+	text-align: center;
+}
+#add_review {
+	padding:20px 20px;
+	background: #6495ED;
+	width:80%;
+	border: 1px solid black;
+	margin: auto;
+}

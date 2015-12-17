@@ -1,0 +1,38 @@
+body{
+	background: url(../img/bg.jpg) no-repeat center center !important;
+}
+#form{
+	margin:auto;
+	margin-top:100px;
+	border: 1px solid black;
+	background: #6495ED;
+	height:50%;
+	width:80%;
+}
+h2 {
+	text-shadow: 3px 3px 5px black;
+}
+.header {
+	color:#f8f8f8;
+}
+
+textarea {
+	margin-top:10px;
+	width:60% !important;
+	margin-left:400px !important;
+	margin-bottom:10px;
+}
+label {
+	margin-top:10px;
+}
+#form {
+	text-align: center;
+}
+input[type=text] {
+	margin-bottom:10px;
+}
+input[type=submit] {
+	display: block;
+	margin: auto;
+	margin-top:20px;
+}

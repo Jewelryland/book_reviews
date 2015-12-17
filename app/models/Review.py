@@ -53,18 +53,22 @@ class Review(Model):
         recent_reviews = "SELECT reviews.rating, reviews.reviews, users.name, users.id as user_id, reviews.created_at, books.title, books.id FROM reviews JOIN books ON reviews.books_id = books.id LEFT JOIN users ON users.id = reviews.users_id ORDER BY reviews.created_at DESC LIMIT 3"
         reviews = self.db.query_db(recent_reviews)
         return reviews
+
     def other_reviews(self):
         other_reviews_query = "SELECT books.title, books.id FROM reviews JOIN books ON reviews.books_id = books.id GROUP BY books.title ORDER BY reviews.created_at ASC"
         other_reviews = self.db.query_db(other_reviews_query)
         return other_reviews
+
     def total_reviews(self, user_id):
         total_reviews_query = "SELECT COUNT(*) AS total_reviews FROM reviews WHERE users_id = {}".format(user_id)
         total_reviews = self.db.query_db(total_reviews_query)
         return total_reviews[0]
+
     def review_titles(self, user_id):
         review_titles_query = "SELECT books.title, books.id FROM reviews JOIN books ON reviews.books_id = books.id WHERE users_id = {} GROUP BY books.title".format(user_id)
         review_titles = self.db.query_db(review_titles_query)
         return review_titles
+        
     def destroy(self, review_id):
         book_id_query = "SELECT books.id FROM books  JOIN reviews ON reviews.books_id = books.id WHERE reviews.id = {}".format(review_id)
         book_id = self.db.query_db(book_id_query)
