@@ -3,6 +3,7 @@ body{
 }
 #main {
 	background:#6495ED;
+	opacity: 0.95;
 	width:80%;
 	height:;
 	border: 1px solid black;
@@ -17,6 +18,7 @@ h1, h3 {
 	text-align: center;
 }
 #add_review {
+	opacity: 0.95;
 	padding:20px 20px;
 	background: #6495ED;
 	width:80%;

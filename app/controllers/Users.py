@@ -13,7 +13,13 @@ class Users(Controller):
     def create(self):
         user_info = request.form
         user = self.models['User'].create(user_info)
-        return redirect('/')
+        if user['status'] == False:
+            for message in user['message']:
+                flash(message)
+                return redirect('/')
+        else:
+            flash("You have succesfully registered!")
+            return redirect('/')
 
     def login(self):
         login_info = request.form
@@ -30,7 +36,7 @@ class Users(Controller):
         session.pop=['name']
         return redirect('/')
 
-    def index(self):
+    def homepage(self):
         recent_reviews = self.models['Review'].recent_reviews()
         other_reviews = self.models['Review'].other_reviews()
         return self.load_view('/user_homepage.html', recent_reviews=recent_reviews, other_reviews=other_reviews)

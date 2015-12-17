@@ -5,7 +5,10 @@ input[type=text], input[type=password] {
 input[type=submit] {
 	width:34%;
 }
-
+#messages {
+	margin-top:20px;
+	text-align: center;
+}
 .form-horizontal {
 	float: none;
 	margin: 0 auto;

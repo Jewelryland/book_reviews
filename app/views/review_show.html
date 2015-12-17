@@ -48,7 +48,7 @@
             <p>{{rev['created_at']}}</p>
             {% if session['id'] == rev['id'] %}
                 <form action="/review/{{rev['review_id']}}/delete" method="post">
-                    <input type = "submit" value="Delete this Review">
+                    <input type = "submit" class="btn btn-danger" value="Delete this Review">
                 </form>
             {% endif %}
             <hr>
@@ -57,7 +57,7 @@
 
     <div id="add_review">
         <h4>Add a Review:</h4>
-        <form action="/add_review/{{id}}" method="post">
+        <form action="/review/{{id}}/update" method="post">
             <textarea name="add_review" class="form-control" rowe='3'></textarea>
               <select name="rating">
                 <option value="1">1</option>

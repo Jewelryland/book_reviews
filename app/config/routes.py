@@ -20,7 +20,7 @@ routes['default_controller'] = 'Users'
 # USERS ROUTES
 routes['POST']['/user'] = 'Users#create'
 routes['POST']['/user/login'] = 'Users#login'
-routes['GET']['/user'] = 'Users#index'
+routes['GET']['/user'] = 'Users#homepage'
 routes['GET']['/users/<id>'] = 'Users#show'
 routes['GET']['/user/logout'] = 'Users#logout'
 # REVIEWS ROUTES

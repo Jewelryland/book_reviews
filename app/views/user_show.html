@@ -1,25 +1,68 @@
 <html>
 <head>
-        <!-- <link rel="stylesheet" type="text/css" href="static/css/walls.css"> -->
+    <link rel="stylesheet" type="text/css" href="../static/css/user_show.css">
     <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container--fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/user">JoReviews</a>
+            </div>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    </head>
-    <body>
-        <a href="/user">Home</a><a href="/review/new">Add book and review</a><a href="/user/logout">Logout</a>
-        <h3>User Alias:{{user_info['alias']}}</h3>
-        <h4>Name: {{user_info['name']}}</h4>
-        <h4>Email:{{user_info['email']}}</h4>
-        <h4>Total Reviews: {{total_reviews['total_reviews']}}</h4>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    {% if session['id'] %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome {{ session['name'] }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/user/logout">Sign out</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div>
+    </nav>
 
-        <p> Posted Reviews on the following books:</p>
-        {% for reviews in review_titles %}
-            <p> <a href="/review/{{reviews['id']}}">{{reviews['title']}}</a> </p>
-        {% endfor %}
-    </body>
+    <div id="container">
+        <div id="picture">
+
+        </div>
+        <div id="profile">
+            <ul>
+                <li>Name: {{user_info['name']}} AKA {{user_info['alias']}}</li>
+                <li>Email: {{user_info['email']}}</li>
+                <li>Total Reviews: {{total_reviews['total_reviews']}}</li>
+            </ul>
+        </div>
+
+        <div id="reviews">
+            <p>Posted Reviews on these books:</p>
+                <div id="sub_reviews">
+                    {% for reviews in review_titles %}
+                        <p> <a href="/review/{{reviews['id']}}">{{reviews['title']}}</a> </p>
+                    {% endfor %}
+                </div>
+        </div>
+
+        <div id="user_review">
+            <p>User review coming soon.. </p>
+        </div>
+    </div>
+</body>
 </html>
